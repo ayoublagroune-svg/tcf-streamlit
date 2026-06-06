@@ -49,11 +49,15 @@ def render_sidebar():
     else:
         st.sidebar.caption("Non connecté")
     pages = ["Accueil", "Dashboard", "Entraînement", "Examen blanc", "Expression écrite", "Premium", "Connexion / Déconnexion"]
+    st.session_state.setdefault("page", "Accueil")
     hinted_page = st.session_state.pop("nav_hint", None)
+    if hinted_page in pages:
+        st.session_state.page = hinted_page
     page = st.sidebar.radio(
         "Menu",
         pages,
-        index=pages.index(hinted_page) if hinted_page in pages else 0,
+        index=pages.index(st.session_state.page) if st.session_state.page in pages else 0,
+        key="page",
         label_visibility="collapsed",
     )
     stats = questions.get_question_stats()

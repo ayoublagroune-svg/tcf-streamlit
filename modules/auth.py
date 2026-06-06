@@ -13,9 +13,16 @@ except ImportError:
 
 
 PWD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto") if CryptContext else None
+MAX_PASSWORD_BYTES = 72
+
+
+def validate_password(password):
+    if len(password.encode("utf-8")) > MAX_PASSWORD_BYTES:
+        raise ValueError("Le mot de passe ne doit pas dépasser 72 octets. Choisis plutôt 8 à 64 caractères.")
 
 
 def hash_password(password, salt=None):
+    validate_password(password)
     if PWD_CONTEXT:
         return PWD_CONTEXT.hash(password)
     salt = salt or os.urandom(16).hex()
@@ -24,6 +31,10 @@ def hash_password(password, salt=None):
 
 
 def verify_password(password, stored_hash):
+    try:
+        validate_password(password)
+    except ValueError:
+        return False
     if PWD_CONTEXT and not stored_hash.startswith("pbkdf2_sha256$"):
         return PWD_CONTEXT.verify(password, stored_hash)
     try:
