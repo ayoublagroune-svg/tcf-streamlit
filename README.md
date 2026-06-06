@@ -1,6 +1,8 @@
-# TCF Tout Public - Examen Blanc
+# TCF Trainer - Objectif B2, C1 et plus
 
-Application Streamlit d'entraînement au TCF Tout Public pour un candidat B1 visant B2.
+Application Streamlit d'entraînement au TCF Tout Public pour progresser vers B2, C1 et des usages avancés du français.
+
+L'application fonctionne d'abord avec la banque locale `questions.json`. Une couche IA optionnelle peut être activée pour une utilisation personnelle à coût minimal, uniquement via des boutons explicites.
 
 ## Fonctionnalités
 
@@ -10,6 +12,9 @@ Application Streamlit d'entraînement au TCF Tout Public pour un candidat B1 vis
 - Sauvegarde automatique des réponses pendant la session
 - Correction pédagogique question par question
 - Analyse des points faibles par thème
+- Section "Mes erreurs fréquentes"
+- Retest ciblé d'une erreur avec 3 questions similaires générées par IA, si le Mode IA est activé
+- Correction IA optionnelle de l'expression écrite, déclenchée uniquement par bouton
 - Tableau de bord avec graphiques Plotly
 - Export PDF, CSV et JSON
 - Historique local dans la session Streamlit
@@ -43,15 +48,58 @@ git remote add origin https://github.com/votre-compte/votre-depot.git
 git push -u origin main
 ```
 
+## Mode IA optionnel
+
+Le Mode IA est désactivé par défaut dans le code avec :
+
+```python
+AI_ENABLED = False
+```
+
+Même avec une clé API configurée, aucun appel IA n'est lancé automatiquement. L'utilisateur doit activer "Mode IA" dans la barre latérale, puis cliquer sur un bouton dédié.
+
+Contrôles de coût inclus :
+
+- limite de 10 appels IA par session
+- génération limitée à 3 questions similaires pour un retest
+- cache de session pour éviter de régénérer la même réponse IA
+- entrées tronquées avant envoi au modèle
+- banque `questions.json` conservée comme source principale
+
+### Configurer une clé API
+
+Sur Streamlit Cloud, ajouter dans les secrets de l'application :
+
+```toml
+OPENAI_API_KEY = "sk-..."
+OPENAI_MODEL = "gpt-5-mini"
+```
+
+En local, vous pouvez aussi utiliser des variables d'environnement :
+
+```bash
+export OPENAI_API_KEY="sk-..."
+export OPENAI_MODEL="gpt-5-mini"
+```
+
+`OPENAI_MODEL` est optionnel. Si la variable est absente, l'application utilise le modèle défini dans `AI_DEFAULT_MODEL`.
+
+### Désactiver totalement l'IA
+
+Pour utiliser seulement `questions.json`, ne configurez pas `OPENAI_API_KEY` et laissez `AI_ENABLED = False`.
+
+Vous pouvez aussi ne jamais activer "Mode IA" dans la barre latérale. Les examens, corrections pédagogiques, graphiques et exports continuent de fonctionner sans clé API.
+
 ## Déploiement sur Streamlit Cloud
 
 1. Aller sur [Streamlit Cloud](https://streamlit.io/cloud).
 2. Connecter le compte GitHub.
 3. Choisir le dépôt.
 4. Définir le fichier principal sur `app.py`.
-5. Cliquer sur Deploy.
+5. Ajouter les secrets OpenAI seulement si vous voulez activer le Mode IA.
+6. Cliquer sur Deploy.
 
-Aucune clé API n'est nécessaire.
+Aucune clé API n'est nécessaire pour le mode gratuit basé sur `questions.json`.
 
 ## Mise à jour de la banque de questions
 

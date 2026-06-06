@@ -3,7 +3,9 @@ import html
 import hashlib
 import io
 import json
+import os
 import random
+import re
 import time
 from collections import Counter, defaultdict
 from datetime import datetime
@@ -20,10 +22,39 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase import pdfdoc
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
+try:
+    from openai import OpenAI
+except ImportError:
+    OpenAI = None
 
-APP_TITLE = "TCF Tout Public - Examen Blanc"
+
+APP_TITLE = "TCF Trainer - Objectif B2, C1 et plus"
 QUESTIONS_PATH = Path("questions.json")
 QUESTION_VARIANTS_PER_ITEM = 2
+AI_ENABLED = False
+AI_DEFAULT_MODEL = "gpt-5-mini"
+AI_MAX_CALLS_PER_SESSION = 10
+AI_INPUT_CHAR_LIMIT = 6000
+AI_OUTPUT_TOKEN_LIMIT = 700
+AI_RETEST_TOKEN_LIMIT = 900
+REQUIRED_AI_QUESTION_FIELDS = {
+    "id",
+    "section",
+    "theme",
+    "niveau",
+    "consigne",
+    "texte",
+    "choix",
+    "bonne_reponse",
+    "explication",
+    "rappel_regle",
+    "astuce_tcf",
+}
+PARASITE_PREFIX_RE = re.compile(
+    r"^\s*(?:sujet\s+(?:compréhension|comprehension|expression\s+écrite|expression\s+ecrite)|"
+    r"compréhension\s+orale|comprehension\s+orale|question)\s*:\s*",
+    re.IGNORECASE,
+)
 
 
 def _md5_compat(*args, **kwargs):
@@ -159,6 +190,13 @@ def init_state():
         "attempt_question_ids": [],
         "history": [],
         "result_saved": False,
+        "errors_saved": False,
+        "error_counts": {},
+        "ai_outputs": {},
+        "ai_generated_questions": {},
+        "ai_cache": {},
+        "ai_call_count": 0,
+        "ai_enabled": env_bool("AI_ENABLED", AI_ENABLED),
     }
     for key, value in defaults.items():
         st.session_state.setdefault(key, value)
@@ -208,6 +246,7 @@ def reset_attempt(sections, all_questions):
     st.session_state.section_started_at = time.time()
     st.session_state.attempt_started_at = datetime.now().isoformat(timespec="seconds")
     st.session_state.result_saved = False
+    st.session_state.errors_saved = False
     set_page("test")
 
 
@@ -234,6 +273,242 @@ def estimate_level(percent):
 def format_seconds(seconds):
     seconds = max(0, int(seconds))
     return f"{seconds // 60:02d}:{seconds % 60:02d}"
+
+
+def env_bool(name, default=False):
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def clean_question_text(text):
+    """Supprime seulement les titres parasites placés au tout début du texte."""
+    if not isinstance(text, str):
+        return text
+    return PARASITE_PREFIX_RE.sub("", text, count=1).strip()
+
+
+CLEAN_TEXT_EXAMPLES = {
+    "Sujet compréhension : Lisez le texte...": "Lisez le texte...",
+    "Le télétravail en France": "Le télétravail en France",
+}
+for _source_text, _expected_text in CLEAN_TEXT_EXAMPLES.items():
+    assert clean_question_text(_source_text) == _expected_text
+
+
+def get_secret(name, default=None):
+    try:
+        return st.secrets.get(name, default)
+    except Exception:
+        return default
+
+
+def openai_api_key():
+    return get_secret("OPENAI_API_KEY") or os.environ.get("OPENAI_API_KEY")
+
+
+def ai_model():
+    return get_secret("OPENAI_MODEL") or os.environ.get("OPENAI_MODEL", AI_DEFAULT_MODEL)
+
+
+def ai_is_enabled():
+    return bool(st.session_state.get("ai_enabled", AI_ENABLED))
+
+
+def ai_is_configured():
+    return bool(openai_api_key())
+
+
+def truncate_for_ai(text, limit=AI_INPUT_CHAR_LIMIT):
+    text = (text or "").strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit] + "\n\n[Texte tronqué pour limiter le coût de l'appel IA.]"
+
+
+def ai_cache_key(prompt, max_tokens):
+    raw = f"{ai_model()}::{max_tokens}::{truncate_for_ai(prompt)}"
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
+    """Appel IA volontaire, plafonné et caché pour limiter les coûts personnels."""
+    # Garde-fou coût : aucun appel API si le Mode IA n'a pas été activé explicitement.
+    if not ai_is_enabled():
+        return "Mode IA désactivé : activez-le dans la barre latérale pour lancer cet appel."
+    if not ai_is_configured():
+        return "IA non configurée : ajoutez OPENAI_API_KEY dans les secrets Streamlit ou les variables d'environnement."
+    if OpenAI is None:
+        return "SDK OpenAI non installé : lancez pip install -r requirements.txt puis redémarrez l'application."
+
+    cache_key = ai_cache_key(prompt, max_tokens)
+    if cache_key in st.session_state.ai_cache:
+        return st.session_state.ai_cache[cache_key]
+
+    # Garde-fou coût : limite par session et cache avant tout nouvel appel réseau.
+    if st.session_state.ai_call_count >= AI_MAX_CALLS_PER_SESSION:
+        return f"Limite atteinte : {AI_MAX_CALLS_PER_SESSION} appels IA maximum par session."
+
+    client = OpenAI(api_key=openai_api_key())
+    try:
+        response = client.responses.create(
+            model=ai_model(),
+            input=[
+                {
+                    "role": "user",
+                    "content": truncate_for_ai(prompt),
+                }
+            ],
+            max_output_tokens=max_tokens,
+        )
+    except Exception as exc:
+        return f"Erreur OpenAI : {exc}"
+
+    st.session_state.ai_call_count += 1
+    output = response.output_text or "Aucune réponse IA reçue."
+    st.session_state.ai_cache[cache_key] = output
+    return output
+
+
+def render_ai_status():
+    if not ai_is_enabled():
+        st.caption("Mode IA désactivé. Les questions fixes de questions.json restent disponibles sans coût.")
+    elif ai_is_configured():
+        remaining = max(0, AI_MAX_CALLS_PER_SESSION - st.session_state.ai_call_count)
+        st.caption(f"Mode IA activé - modèle {ai_model()} - {remaining} appel(s) restant(s) dans cette session.")
+    else:
+        st.caption("Mode IA activé mais aucune clé API n'est configurée. Le mode gratuit fonctionne toujours.")
+
+
+def render_ai_controls():
+    with st.sidebar:
+        st.subheader("Mode IA")
+        st.session_state.ai_enabled = st.checkbox(
+            "Activer le Mode IA",
+            value=st.session_state.get("ai_enabled", AI_ENABLED),
+            help="Désactivé par défaut pour éviter tout coût. Les appels IA ne partent que via les boutons dédiés.",
+        )
+        render_ai_status()
+        if st.session_state.ai_cache:
+            st.caption(f"{len(st.session_state.ai_cache)} réponse(s) IA en cache session.")
+
+
+def extract_json_array(text):
+    text = (text or "").strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.IGNORECASE)
+        text = re.sub(r"\s*```$", "", text)
+    match = re.search(r"\[[\s\S]*\]", text)
+    return match.group(0) if match else text
+
+
+def validate_ai_questions(raw_text):
+    try:
+        questions = json.loads(extract_json_array(raw_text))
+    except json.JSONDecodeError as exc:
+        return [], f"JSON IA invalide : {exc}"
+    if not isinstance(questions, list):
+        return [], "JSON IA invalide : la réponse doit être une liste."
+
+    validated = []
+    for index, question in enumerate(questions, start=1):
+        if not isinstance(question, dict):
+            return [], f"Question IA {index} invalide : objet attendu."
+        missing = REQUIRED_AI_QUESTION_FIELDS - set(question)
+        if missing:
+            return [], f"Question IA {index} invalide : champ(s) manquant(s) {', '.join(sorted(missing))}."
+        if question["bonne_reponse"] not in {"A", "B", "C", "D"}:
+            return [], f"Question IA {index} invalide : bonne_reponse doit être A, B, C ou D."
+        choix = question.get("choix")
+        if not isinstance(choix, dict) or set(choix) != {"A", "B", "C", "D"}:
+            return [], f"Question IA {index} invalide : choix doit contenir A, B, C et D."
+        validated.append(question)
+    return validated, None
+
+
+def writing_feedback_prompt(task, answer):
+    return f"""
+Tu es correcteur TCF pour l'expression écrite. Réponds en français, de façon concise et pédagogique.
+
+Consigne :
+{task['prompt']}
+
+Longueur recommandée :
+{task['recommended']}
+
+Réponse du candidat :
+{answer}
+
+Donne :
+1. niveau estimé : B1, B2 ou C1,
+2. les points forts,
+3. les erreurs principales avec corrections,
+4. une version améliorée naturelle,
+5. trois conseils concrets pour viser B2/C1.
+Ne donne pas de note officielle TCF.
+"""
+
+
+def retest_questions_prompt(item, count=3):
+    source = {
+        "section": item["section"],
+        "theme": item["theme"],
+        "niveau": "B2/C1",
+        "consigne": clean_question_text(item["consigne"]),
+        "texte": clean_question_text(item["texte"]),
+        "choix": item["choix"],
+        "bonne_reponse": item["bonne_reponse"],
+        "reponse_utilisateur": item["user_answer"],
+        "explication": clean_question_text(item["explication"]),
+        "rappel_regle": clean_question_text(item["rappel_regle"]),
+        "astuce_tcf": clean_question_text(item["astuce_tcf"]),
+    }
+    return f"""
+Génère exactement {count} questions TCF similaires pour retester ce type d'erreur.
+Niveau visé : B2/C1.
+
+Question source :
+{json.dumps(source, ensure_ascii=False)}
+
+Réponds uniquement avec un JSON strict, sans texte avant ni après.
+Format obligatoire :
+[
+  {{
+    "id": "AI_RETEST_001",
+    "section": "{item['section']}",
+    "theme": "{item['theme']}",
+    "niveau": "B2/C1",
+    "consigne": "...",
+    "texte": "...",
+    "choix": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
+    "bonne_reponse": "A",
+    "explication": "...",
+    "rappel_regle": "...",
+    "astuce_tcf": "..."
+  }}
+]
+"""
+
+
+def revision_plan_prompt(score, payload):
+    writing_word_counts = {task_id: len(answer.split()) for task_id, answer in payload["expression_ecrite"].items()}
+    return f"""
+Prépare un plan de révision TCF sur 7 jours pour un candidat visant B2, C1 et plus.
+
+Score global : {score['percent']} %
+Niveau estimé : {score['level']}
+Scores par compétence :
+{json.dumps(score['by_section'], ensure_ascii=False)}
+
+Thèmes à revoir :
+{json.dumps(score['weak_themes'].most_common(8), ensure_ascii=False)}
+
+Mots écrits par tâche d'expression écrite :
+{json.dumps(writing_word_counts, ensure_ascii=False)}
+
+Donne un plan pratique jour par jour, avec durée, objectifs, exercices et priorité.
+"""
 
 
 def score_attempt(questions):
@@ -293,20 +568,91 @@ def build_report_payload(questions):
                 "id": item["id"],
                 "section": item["section"],
                 "theme": item["theme"],
-                "consigne": item["consigne"],
-                "question": item["texte"],
+                "consigne": clean_question_text(item["consigne"]),
+                "question": clean_question_text(item["texte"]),
                 "reponse_utilisateur": item["user_answer"],
                 "bonne_reponse": item["bonne_reponse"],
                 "correct": item["correct"],
-                "explication": item["explication"],
-                "rappel_regle": item["rappel_regle"],
-                "astuce_tcf": item["astuce_tcf"],
+                "explication": clean_question_text(item["explication"]),
+                "rappel_regle": clean_question_text(item["rappel_regle"]),
+                "astuce_tcf": clean_question_text(item["astuce_tcf"]),
             }
             for item in score["items"]
         ],
         "expression_ecrite": st.session_state.writing_answers,
         "expression_orale": st.session_state.speaking_notes,
     }
+
+
+def save_error_counts_once(score):
+    if st.session_state.errors_saved:
+        return
+    counts = Counter(st.session_state.error_counts)
+    counts.update(item["theme"] for item in score["items"] if not item["correct"])
+    st.session_state.error_counts = dict(counts)
+    st.session_state.errors_saved = True
+
+
+def render_generated_questions(questions, key_prefix):
+    for index, question in enumerate(questions, start=1):
+        with st.container(border=True):
+            st.write(f"**Question IA {index} - {question['theme'].replace('_', ' ')}**")
+            st.write(clean_question_text(question["consigne"]))
+            st.write(clean_question_text(question["texte"]))
+            selected = st.radio(
+                "Votre réponse",
+                [f"{key}. {clean_question_text(value)}" for key, value in question["choix"].items()],
+                key=f"{key_prefix}_{index}",
+                index=None,
+            )
+            if selected:
+                answer = selected.split(".", 1)[0]
+                if answer == question["bonne_reponse"]:
+                    st.success(f"Correct. {clean_question_text(question['explication'])}")
+                else:
+                    st.error(f"Réponse attendue : {question['bonne_reponse']}. {clean_question_text(question['explication'])}")
+                st.caption(clean_question_text(question["rappel_regle"]))
+                st.caption(clean_question_text(question["astuce_tcf"]))
+
+
+def generate_retest_for_item(item, output_key, count=3):
+    raw = call_ai(retest_questions_prompt(item, count=count), max_tokens=AI_RETEST_TOKEN_LIMIT)
+    if raw.startswith(("Mode IA", "IA non configurée", "SDK OpenAI", "Limite atteinte", "Erreur OpenAI")):
+        st.session_state.ai_outputs[output_key] = raw
+        st.session_state.ai_generated_questions.pop(output_key, None)
+        return
+    questions, error = validate_ai_questions(raw)
+    if error:
+        st.session_state.ai_outputs[output_key] = error
+        st.session_state.ai_generated_questions.pop(output_key, None)
+        return
+    st.session_state.ai_generated_questions[output_key] = questions[:4]
+    st.session_state.ai_outputs[output_key] = None
+
+
+def render_frequent_errors(score):
+    counts = Counter(st.session_state.error_counts)
+    if not counts:
+        return
+
+    st.subheader("Mes erreurs fréquentes")
+    error_df = pd.DataFrame(counts.most_common(), columns=["thème", "erreurs"])
+    st.dataframe(error_df, use_container_width=True, hide_index=True)
+
+    incorrect_items = [item for item in score["items"] if not item["correct"]]
+    if not incorrect_items:
+        return
+    themes = [theme for theme, _ in counts.most_common()]
+    selected_theme = st.selectbox("Retest ciblé", themes)
+    item = next((candidate for candidate in incorrect_items if candidate["theme"] == selected_theme), incorrect_items[0])
+    output_key = f"frequent_retest_{selected_theme}"
+    if st.button("Générer 3 questions similaires", key=f"frequent_{selected_theme}"):
+        with st.spinner("Génération du retest ciblé..."):
+            generate_retest_for_item(item, output_key)
+    if st.session_state.ai_outputs.get(output_key):
+        st.error(st.session_state.ai_outputs[output_key])
+    if output_key in st.session_state.ai_generated_questions:
+        render_generated_questions(st.session_state.ai_generated_questions[output_key], output_key)
 
 
 def csv_bytes(payload):
@@ -402,8 +748,8 @@ def render_header():
 
 def render_home(questions):
     st.title(APP_TITLE)
-    st.markdown('<span class="badge">Objectif B2</span>', unsafe_allow_html=True)
-    st.write("Entraînez-vous avec un examen blanc complet, des corrections détaillées et un tableau de bord de progression.")
+    st.markdown('<span class="badge">Objectif B2, C1 et plus</span>', unsafe_allow_html=True)
+    st.write("Entraînez-vous avec un examen blanc complet, des corrections détaillées et un tableau de bord de progression vers les niveaux avancés.")
 
     cols = st.columns(3)
     with cols[0]:
@@ -411,7 +757,7 @@ def render_home(questions):
     with cols[1]:
         metric_card("Durée estimée", "2 h 37")
     with cols[2]:
-        metric_card("Niveau visé", "B2")
+        metric_card("Niveau visé", "B2/C1+")
 
     st.divider()
     c1, c2 = st.columns(2)
@@ -467,7 +813,7 @@ def advance_section():
 
 
 def render_oral_audio(question):
-    audio_text = html.escape(json.dumps(question["texte"], ensure_ascii=False), quote=True)
+    audio_text = html.escape(json.dumps(clean_question_text(question["texte"]), ensure_ascii=False), quote=True)
     element_id = f"audio_{question['id']}"
     components.html(
         f"""
@@ -501,7 +847,7 @@ def render_mcq_section(section_key, questions, expired):
         with st.container(border=True):
             st.subheader(f"Question {index}")
             st.caption(f"Thème : {q['theme'].replace('_', ' ')} | Niveau : {q['niveau']}")
-            st.write(q["consigne"])
+            st.write(clean_question_text(q["consigne"]))
             if section_key == "comprehension_orale":
                 if q.get("audio_file"):
                     st.audio(q["audio_file"])
@@ -509,8 +855,8 @@ def render_mcq_section(section_key, questions, expired):
                     render_oral_audio(q)
                 st.caption("La transcription sera affichée dans la correction.")
             else:
-                st.write(q["texte"])
-            options = [f"{key}. {value}" for key, value in q["choix"].items()]
+                st.write(clean_question_text(q["texte"]))
+            options = [f"{key}. {clean_question_text(value)}" for key, value in q["choix"].items()]
             current = st.session_state.answers.get(q["id"])
             index_value = list(q["choix"]).index(current) if current in q["choix"] else None
             selected = st.radio(
@@ -527,10 +873,11 @@ def render_mcq_section(section_key, questions, expired):
 
 def render_writing_section(expired):
     st.info("Auto-évaluation : clarté de la réponse, respect de la consigne, organisation, richesse du vocabulaire, correction grammaticale.")
+    render_ai_status()
     for task in WRITING_TASKS:
         with st.container(border=True):
             st.subheader(task["title"])
-            st.write(task["prompt"])
+            st.write(clean_question_text(task["prompt"]))
             st.caption(f"Longueur recommandée : {task['recommended']}")
             value = st.text_area(
                 "Votre réponse",
@@ -545,6 +892,12 @@ def render_writing_section(expired):
             st.checkbox("J'ai répondu à toutes les parties de la consigne", key=f"self_{task['id']}_1", disabled=expired)
             st.checkbox("J'ai utilisé des connecteurs logiques", key=f"self_{task['id']}_2", disabled=expired)
             st.checkbox("J'ai relu les accords et les temps", key=f"self_{task['id']}_3", disabled=expired)
+            ai_key = f"writing_feedback_{task['id']}"
+            if st.button("Corriger cette réponse avec l'IA", key=f"ai_{task['id']}", disabled=not value.strip()):
+                with st.spinner("Correction IA en cours..."):
+                    st.session_state.ai_outputs[ai_key] = call_ai(writing_feedback_prompt(task, value))
+            if ai_key in st.session_state.ai_outputs:
+                st.markdown(st.session_state.ai_outputs[ai_key])
 
 
 def render_speaking_section(expired):
@@ -552,7 +905,7 @@ def render_speaking_section(expired):
     for task in SPEAKING_TASKS:
         with st.container(border=True):
             st.subheader(task["title"])
-            st.write(task["prompt"])
+            st.write(clean_question_text(task["prompt"]))
             notes = st.text_area(
                 "Notes de préparation",
                 value=st.session_state.speaking_notes.get(task["id"], ""),
@@ -646,6 +999,7 @@ def render_correction(questions):
     score = score_attempt(questions)
     payload = build_report_payload(questions)
     save_history_once(payload)
+    save_error_counts_once(score)
     render_dashboard(score)
 
     if score["weak_themes"]:
@@ -653,24 +1007,43 @@ def render_correction(questions):
         for index, (theme, count) in enumerate(score["weak_themes"].most_common(5), start=1):
             st.write(f"{index}. {theme.replace('_', ' ')} ({count} erreur(s))")
 
+    render_frequent_errors(score)
+
+    st.subheader("Plan IA optionnel")
+    render_ai_status()
+    if st.button("Créer un plan de révision avec l'IA", use_container_width=True):
+        with st.spinner("Création du plan..."):
+            st.session_state.ai_outputs["revision_plan"] = call_ai(revision_plan_prompt(score, payload))
+    if "revision_plan" in st.session_state.ai_outputs:
+        with st.expander("Plan de révision IA", expanded=True):
+            st.markdown(st.session_state.ai_outputs["revision_plan"])
+
     st.subheader("Détail des réponses")
     for idx, item in enumerate(score["items"], start=1):
         status = "✓ Correct" if item["correct"] else "✗ Incorrect"
         with st.expander(f"Question {idx} - {status} - {item['theme'].replace('_', ' ')}", expanded=not item["correct"]):
-            st.write(f"**Consigne :** {item['consigne']}")
+            st.write(f"**Consigne :** {clean_question_text(item['consigne'])}")
             label = "Transcription audio" if item["section"] == "comprehension_orale" else "Question"
-            st.write(f"**{label} :** {item['texte']}")
+            st.write(f"**{label} :** {clean_question_text(item['texte'])}")
             st.write("**Choix proposés :**")
             for choice_key, choice_text in item["choix"].items():
-                st.write(f"{choice_key}. {choice_text}")
+                st.write(f"{choice_key}. {clean_question_text(choice_text)}")
             st.write(f"**Votre réponse :** {item['user_answer'] or 'Aucune réponse'}")
-            st.write(f"**Bonne réponse :** {item['bonne_reponse']} - {item['choix'][item['bonne_reponse']]}")
-            st.write(f"**Explication :** {item['explication']}")
+            st.write(f"**Bonne réponse :** {item['bonne_reponse']} - {clean_question_text(item['choix'][item['bonne_reponse']])}")
+            st.write(f"**Explication :** {clean_question_text(item['explication'])}")
             if not item["correct"]:
                 st.write(f"**Pourquoi c'est incorrect :** la réponse attendue correspond à l'indice principal de la question et à la règle testée.")
-            st.write(f"**Rappel :** {item['rappel_regle']}")
+                output_key = f"retest_{item['id']}"
+                if st.button("Générer 3 questions similaires", key=f"retest_button_{item['id']}"):
+                    with st.spinner("Génération du retest..."):
+                        generate_retest_for_item(item, output_key)
+                if st.session_state.ai_outputs.get(output_key):
+                    st.error(st.session_state.ai_outputs[output_key])
+                if output_key in st.session_state.ai_generated_questions:
+                    render_generated_questions(st.session_state.ai_generated_questions[output_key], output_key)
+            st.write(f"**Rappel :** {clean_question_text(item['rappel_regle'])}")
             st.write(f"**Conseil pratique :** notez ce thème dans votre carnet d'erreurs et refaites trois phrases similaires.")
-            st.write(f"**Astuce TCF :** {item['astuce_tcf']}")
+            st.write(f"**Astuce TCF :** {clean_question_text(item['astuce_tcf'])}")
 
     st.subheader("Export")
     col1, col2, col3 = st.columns(3)
@@ -712,7 +1085,7 @@ def render_about(questions):
         counts[q["section"]] += 1
     st.title("À propos du TCF")
     st.write("Le TCF Tout Public évalue la compréhension orale, la maîtrise des structures de la langue, la compréhension écrite et, selon l'inscription, les expressions écrite et orale.")
-    st.write("Cette application est un outil d'entraînement pédagogique pour consolider un niveau B1 et viser B2.")
+    st.write("Cette application est un outil d'entraînement pédagogique pour viser B2, C1 et progresser vers des usages avancés.")
     st.subheader("Format inclus")
     for section, meta in SECTION_META.items():
         total = counts.get(section, meta["expected"])
@@ -727,6 +1100,7 @@ def main():
     st.set_page_config(page_title=APP_TITLE, page_icon="TCF", layout="wide")
     init_state()
     render_header()
+    render_ai_controls()
     questions = load_questions()
 
     page = st.session_state.page
