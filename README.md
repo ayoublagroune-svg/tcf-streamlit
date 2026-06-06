@@ -7,6 +7,7 @@ L'application fonctionne d'abord avec la banque locale `questions.json`. Une cou
 ## Fonctionnalités
 
 - Examen blanc complet avec les sections du TCF TP
+- Banque locale de 300 QCM, équilibrée entre compréhension orale, structures de la langue et compréhension écrite
 - Entraînement par compétence
 - Chronomètre par section avec progression
 - Sauvegarde automatique des réponses pendant la session

@@ -34,8 +34,8 @@ AI_ENABLED = False
 AI_DEFAULT_MODEL = "gpt-5-mini"
 AI_MAX_CALLS_PER_SESSION = 10
 AI_INPUT_CHAR_LIMIT = 6000
-AI_OUTPUT_TOKEN_LIMIT = 700
-AI_RETEST_TOKEN_LIMIT = 1800
+AI_OUTPUT_TOKEN_LIMIT = 1600
+AI_RETEST_TOKEN_LIMIT = 4000
 REQUIRED_AI_QUESTION_FIELDS = {
     "id",
     "section",
@@ -222,6 +222,27 @@ def root_question_id(question_id):
     return question_id.split("_V", 1)[0]
 
 
+def interleave_questions_by_theme(questions):
+    by_theme = defaultdict(list)
+    for question in questions:
+        by_theme[question["theme"]].append(question)
+    for theme_questions in by_theme.values():
+        random.shuffle(theme_questions)
+
+    ordered = []
+    themes = list(by_theme)
+    random.shuffle(themes)
+    while themes:
+        next_themes = []
+        for theme in themes:
+            if by_theme[theme]:
+                ordered.append(by_theme[theme].pop())
+            if by_theme[theme]:
+                next_themes.append(theme)
+        themes = next_themes
+    return ordered
+
+
 def select_attempt_question_ids(all_questions, sections):
     selected = []
     for section in sections:
@@ -234,8 +255,10 @@ def select_attempt_question_ids(all_questions, sections):
             grouped[root_question_id(question["id"])].append(question)
         roots = list(grouped)
         target = min(meta["expected"], len(roots))
+        section_selected = []
         for root in random.sample(roots, target):
-            selected.append(random.choice(grouped[root])["id"])
+            section_selected.append(random.choice(grouped[root]))
+        selected.extend(question["id"] for question in interleave_questions_by_theme(section_selected))
     return selected
 
 
@@ -375,6 +398,11 @@ def ai_model():
     return get_secret("OPENAI_MODEL") or os.environ.get("OPENAI_MODEL", AI_DEFAULT_MODEL)
 
 
+def ai_uses_reasoning_tokens():
+    model = ai_model().lower()
+    return model.startswith("gpt-5") or model.startswith("o")
+
+
 def ai_is_enabled():
     return bool(st.session_state.get("ai_enabled", AI_ENABLED))
 
@@ -435,6 +463,8 @@ def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT, response_schema=None):
                     "strict": True,
                 }
             }
+        if ai_uses_reasoning_tokens():
+            request["reasoning"] = {"effort": "minimal"}
         response = client.responses.create(**request)
     except Exception as exc:
         if "insufficient_quota" in str(exc):
@@ -530,6 +560,7 @@ def is_ai_error_message(text):
 def writing_feedback_prompt(task, answer):
     return f"""
 Tu es correcteur TCF pour l'expression écrite. Réponds en français, de façon concise et pédagogique.
+Limite ta réponse à 350 mots maximum.
 
 Consigne :
 {task['prompt']}
@@ -580,6 +611,7 @@ def revision_plan_prompt(score, payload):
     writing_word_counts = {task_id: len(answer.split()) for task_id, answer in payload["expression_ecrite"].items()}
     return f"""
 Prépare un plan de révision TCF sur 7 jours pour un candidat visant B2, C1 et plus.
+Réponds de façon structurée et concise, 450 mots maximum.
 
 Score global : {score['percent']} %
 Niveau estimé : {score['level']}
