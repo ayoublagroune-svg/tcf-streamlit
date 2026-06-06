@@ -30,7 +30,6 @@ except ImportError:
 
 APP_TITLE = "TCF Trainer - Objectif B2, C1 et plus"
 QUESTIONS_PATH = Path("questions.json")
-QUESTION_VARIANTS_PER_ITEM = 2
 AI_ENABLED = False
 AI_DEFAULT_MODEL = "gpt-5-mini"
 AI_MAX_CALLS_PER_SESSION = 10
@@ -52,7 +51,8 @@ REQUIRED_AI_QUESTION_FIELDS = {
 }
 PARASITE_PREFIX_RE = re.compile(
     r"^\s*(?:sujet\s+(?:compréhension|comprehension|expression\s+écrite|expression\s+ecrite)|"
-    r"compréhension\s+orale|comprehension\s+orale|question)\s*:\s*",
+    r"compréhension\s+orale|comprehension\s+orale|nouveau\s+document|document\s+d'entraînement|"
+    r"item\s+grammatical\s+d'entraînement|nouvelle\s+question\s+de\s+grammaire|question)\s*[:.]\s*",
     re.IGNORECASE,
 )
 
@@ -146,35 +146,7 @@ SPEAKING_TASKS = [
 
 def load_questions():
     with QUESTIONS_PATH.open(encoding="utf-8") as handle:
-        questions = json.load(handle)
-    return questions + build_generated_variants(questions)
-
-
-def build_generated_variants(questions):
-    variants = []
-    prefixes = {
-        "comprehension_orale": [
-            "Nouvelle situation audio : ",
-            "Document sonore d'entraînement : ",
-        ],
-        "comprehension_ecrite": [
-            "Nouveau document : ",
-            "Document d'entraînement : ",
-        ],
-        "structures_langue": [
-            "Item grammatical d'entraînement. ",
-            "Nouvelle question de grammaire. ",
-        ],
-    }
-    for question in questions:
-        for variant_index in range(QUESTION_VARIANTS_PER_ITEM):
-            variant = dict(question)
-            variant["choix"] = dict(question["choix"])
-            variant["id"] = f"{question['id']}_V{variant_index + 1}"
-            variant["texte"] = prefixes[question["section"]][variant_index] + question["texte"]
-            variant["explication"] = question["explication"] + " Cette variante évalue le même savoir-faire avec un contexte légèrement différent."
-            variants.append(variant)
-    return variants
+        return json.load(handle)
 
 
 def init_state():
@@ -289,9 +261,60 @@ def clean_question_text(text):
     return PARASITE_PREFIX_RE.sub("", text, count=1).strip()
 
 
+def reading_document_text(question):
+    """Présente les items de compréhension écrite comme de vrais courts documents TCF."""
+    text = clean_question_text(question.get("texte", ""))
+    if question.get("section") != "comprehension_ecrite" or len(text) >= 260:
+        return text
+
+    theme = question.get("theme", "")
+    if "email" in theme or "message" in theme:
+        return (
+            "Message reçu\n\n"
+            f"{text}\n\n"
+            "Le destinataire doit comprendre l'information principale, la date ou l'action attendue avant de répondre."
+        )
+    if "courrier" in theme or "administr" in theme:
+        return (
+            "Extrait d'un courrier administratif\n\n"
+            f"{text}\n\n"
+            "Le document précise la situation du dossier et indique, si nécessaire, la démarche à effectuer."
+        )
+    if "annonce" in theme:
+        return (
+            "Annonce pratique\n\n"
+            f"{text}\n\n"
+            "Les informations importantes concernent les conditions, le moment, le lieu ou le service proposé."
+        )
+    if "reglement" in theme or "instruction" in theme:
+        return (
+            "Consigne ou règlement\n\n"
+            f"{text}\n\n"
+            "Le lecteur doit repérer ce qui est obligatoire, interdit, conseillé ou soumis à une condition."
+        )
+    if "opinion" in theme or "article" in theme:
+        return (
+            "Extrait d'article\n\n"
+            f"{text}\n\n"
+            "Le passage présente une idée principale et une nuance. Il faut distinguer l'opinion générale des détails."
+        )
+    return (
+        "Document\n\n"
+        f"{text}\n\n"
+        "Lisez attentivement le document et repérez l'information qui répond exactement à la question."
+    )
+
+
+def question_text_for_display(question):
+    if question.get("section") == "comprehension_ecrite":
+        return reading_document_text(question)
+    return clean_question_text(question.get("texte", ""))
+
+
 CLEAN_TEXT_EXAMPLES = {
     "Sujet compréhension : Lisez le texte...": "Lisez le texte...",
     "Le télétravail en France": "Le télétravail en France",
+    "Nouveau document : Lisez le texte...": "Lisez le texte...",
 }
 for _source_text, _expected_text in CLEAN_TEXT_EXAMPLES.items():
     assert clean_question_text(_source_text) == _expected_text
@@ -363,6 +386,11 @@ def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
             max_output_tokens=max_tokens,
         )
     except Exception as exc:
+        if "insufficient_quota" in str(exc):
+            return (
+                "Quota OpenAI insuffisant : ajoutez des crédits ou activez la facturation dans votre compte "
+                "OpenAI API, puis réessayez. Aucun autre appel IA n'a été lancé."
+            )
         return f"Erreur OpenAI : {exc}"
 
     st.session_state.ai_call_count += 1
@@ -456,7 +484,7 @@ def retest_questions_prompt(item, count=3):
         "theme": item["theme"],
         "niveau": "B2/C1",
         "consigne": clean_question_text(item["consigne"]),
-        "texte": clean_question_text(item["texte"]),
+        "texte": question_text_for_display(item),
         "choix": item["choix"],
         "bonne_reponse": item["bonne_reponse"],
         "reponse_utilisateur": item["user_answer"],
@@ -569,7 +597,7 @@ def build_report_payload(questions):
                 "section": item["section"],
                 "theme": item["theme"],
                 "consigne": clean_question_text(item["consigne"]),
-                "question": clean_question_text(item["texte"]),
+                "question": question_text_for_display(item),
                 "reponse_utilisateur": item["user_answer"],
                 "bonne_reponse": item["bonne_reponse"],
                 "correct": item["correct"],
@@ -598,7 +626,7 @@ def render_generated_questions(questions, key_prefix):
         with st.container(border=True):
             st.write(f"**Question IA {index} - {question['theme'].replace('_', ' ')}**")
             st.write(clean_question_text(question["consigne"]))
-            st.write(clean_question_text(question["texte"]))
+            st.write(question_text_for_display(question))
             selected = st.radio(
                 "Votre réponse",
                 [f"{key}. {clean_question_text(value)}" for key, value in question["choix"].items()],
@@ -855,7 +883,7 @@ def render_mcq_section(section_key, questions, expired):
                     render_oral_audio(q)
                 st.caption("La transcription sera affichée dans la correction.")
             else:
-                st.write(clean_question_text(q["texte"]))
+                st.write(question_text_for_display(q))
             options = [f"{key}. {clean_question_text(value)}" for key, value in q["choix"].items()]
             current = st.session_state.answers.get(q["id"])
             index_value = list(q["choix"]).index(current) if current in q["choix"] else None
@@ -1024,7 +1052,7 @@ def render_correction(questions):
         with st.expander(f"Question {idx} - {status} - {item['theme'].replace('_', ' ')}", expanded=not item["correct"]):
             st.write(f"**Consigne :** {clean_question_text(item['consigne'])}")
             label = "Transcription audio" if item["section"] == "comprehension_orale" else "Question"
-            st.write(f"**{label} :** {clean_question_text(item['texte'])}")
+            st.write(f"**{label} :** {question_text_for_display(item)}")
             st.write("**Choix proposés :**")
             for choice_key, choice_text in item["choix"].items():
                 st.write(f"{choice_key}. {clean_question_text(choice_text)}")
