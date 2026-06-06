@@ -31,7 +31,7 @@ except ImportError:
 APP_TITLE = "TCF Trainer - Objectif B2, C1 et plus"
 QUESTIONS_PATH = Path("questions.json")
 AI_ENABLED = False
-AI_DEFAULT_MODEL = "gpt-5-mini"
+AI_DEFAULT_MODEL = "gpt-4.1-mini"
 AI_MAX_CALLS_PER_SESSION = 10
 AI_INPUT_CHAR_LIMIT = 6000
 AI_OUTPUT_TOKEN_LIMIT = 1600

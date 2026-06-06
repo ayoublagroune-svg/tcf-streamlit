@@ -73,14 +73,14 @@ Sur Streamlit Cloud, ajouter dans les secrets de l'application :
 
 ```toml
 OPENAI_API_KEY = "sk-..."
-OPENAI_MODEL = "gpt-5-mini"
+OPENAI_MODEL = "gpt-4.1-mini"
 ```
 
 En local, vous pouvez aussi utiliser des variables d'environnement :
 
 ```bash
 export OPENAI_API_KEY="sk-..."
-export OPENAI_MODEL="gpt-5-mini"
+export OPENAI_MODEL="gpt-4.1-mini"
 ```
 
 `OPENAI_MODEL` est optionnel. Si la variable est absente, l'application utilise le modèle défini dans `AI_DEFAULT_MODEL`.
