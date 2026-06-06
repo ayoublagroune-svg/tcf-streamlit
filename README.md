@@ -1,136 +1,130 @@
-# TCF Trainer - Objectif B2, C1 et plus
+# TCF Coach IA
 
-Application Streamlit d'entraînement au TCF Tout Public pour progresser vers B2, C1 et des usages avancés du français.
+TCF Coach IA est un MVP Streamlit de préparation au TCF. L'application propose des examens blancs chronométrés, un entraînement par compétence, une correction pédagogique, un suivi utilisateur et une logique Free/Premium.
 
-L'application fonctionne d'abord avec la banque locale `questions.json`. Une couche IA optionnelle peut être activée pour une utilisation personnelle à coût minimal, uniquement via des boutons explicites.
+Application indépendante, non affiliée à France Éducation international. Les questions sont originales et conçues pour être de niveau équivalent au TCF. Les niveaux CECRL affichés sont des estimations non officielles.
 
 ## Fonctionnalités
 
-- Examen blanc complet avec les sections du TCF TP
-- Banque locale de 300 QCM, équilibrée entre compréhension orale, structures de la langue et compréhension écrite
-- Entraînement par compétence
-- Chronomètre par section avec progression
-- Sauvegarde automatique des réponses pendant la session
-- Correction pédagogique question par question
-- Analyse des points faibles par thème
-- Section "Mes erreurs fréquentes"
-- Retest ciblé d'une erreur avec 3 questions similaires générées par IA, si le Mode IA est activé
-- Correction IA optionnelle de l'expression écrite, déclenchée uniquement par bouton
-- Tableau de bord avec graphiques Plotly
-- Export PDF, CSV et JSON
-- Historique local dans la session Streamlit
+- Landing page produit avec accès gratuit et offre Premium
+- Inscription, connexion, déconnexion et session utilisateur Streamlit
+- Mots de passe hashés avec `passlib[bcrypt]`, avec fallback PBKDF2 si passlib est absent
+- Base SQLite locale dans `data/tcf_coach.db`
+- Dashboard: score moyen, derniers examens, progression par compétence, niveau estimé, erreurs fréquentes et recommandations
+- Mode entraînement par compétence et niveau
+- Examen blanc court avec temps limité, correction en fin d'épreuve et sauvegarde
+- Expression écrite avec correction IA optionnelle
+- Paywall MVP: limites gratuites et message de montée en gamme
+- Stripe optionnel, sans bloquer l'app si les variables sont absentes
+- OpenAI ou Azure OpenAI optionnels, sans bloquer l'app si les clés sont absentes
 
-## Installation locale
-
-1. Créer un environnement Python 3.10+.
-2. Installer les dépendances :
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Lancer l'application :
+## Lancement local
 
 ```bash
 streamlit run app.py
 ```
 
-## Création du dépôt GitHub
+Puis ouvrir l'URL affichée par Streamlit, généralement `http://localhost:8501`.
 
-1. Créer un nouveau dépôt sur GitHub.
-2. Ajouter les fichiers du projet :
+## Configuration
 
-```bash
-git init
-git add .
-git commit -m "Initial TCF training app"
-git branch -M main
-git remote add origin https://github.com/votre-compte/votre-depot.git
-git push -u origin main
-```
+Copier `.env.example` si vous utilisez un chargeur d'environnement local, ou définir les variables dans Streamlit Cloud.
 
-## Mode IA optionnel
+### IA optionnelle
 
-Le Mode IA est désactivé par défaut dans le code avec :
-
-```python
-AI_ENABLED = False
-```
-
-Même avec une clé API configurée, aucun appel IA n'est lancé automatiquement. L'utilisateur doit activer "Mode IA" dans la barre latérale, puis cliquer sur un bouton dédié.
-
-Contrôles de coût inclus :
-
-- limite de 10 appels IA par session
-- génération limitée à 3 questions similaires pour un retest
-- cache de session pour éviter de régénérer la même réponse IA
-- entrées tronquées avant envoi au modèle
-- banque `questions.json` conservée comme source principale
-
-### Configurer une clé API
-
-Sur Streamlit Cloud, ajouter dans les secrets de l'application :
-
-```toml
-OPENAI_API_KEY = "sk-..."
-OPENAI_MODEL = "gpt-4.1-mini"
-```
-
-En local, vous pouvez aussi utiliser des variables d'environnement :
+OpenAI standard:
 
 ```bash
-export OPENAI_API_KEY="sk-..."
-export OPENAI_MODEL="gpt-4.1-mini"
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4.1-mini
 ```
 
-`OPENAI_MODEL` est optionnel. Si la variable est absente, l'application utilise le modèle défini dans `AI_DEFAULT_MODEL`.
+Azure OpenAI:
 
-### Désactiver totalement l'IA
-
-Pour utiliser seulement `questions.json`, ne configurez pas `OPENAI_API_KEY` et laissez `AI_ENABLED = False`.
-
-Vous pouvez aussi ne jamais activer "Mode IA" dans la barre latérale. Les examens, corrections pédagogiques, graphiques et exports continuent de fonctionner sans clé API.
-
-## Déploiement sur Streamlit Cloud
-
-1. Aller sur [Streamlit Cloud](https://streamlit.io/cloud).
-2. Connecter le compte GitHub.
-3. Choisir le dépôt.
-4. Définir le fichier principal sur `app.py`.
-5. Ajouter les secrets OpenAI seulement si vous voulez activer le Mode IA.
-6. Cliquer sur Deploy.
-
-Aucune clé API n'est nécessaire pour le mode gratuit basé sur `questions.json`.
-
-## Mise à jour de la banque de questions
-
-Les questions sont dans `questions.json`.
-
-Chaque question suit ce format :
-
-```json
-{
-  "id": "SL_001",
-  "section": "structures_langue",
-  "theme": "passe_compose",
-  "niveau": "B1",
-  "consigne": "Choisissez la bonne réponse.",
-  "texte": "Hier, elle ___ au marché.",
-  "choix": {
-    "A": "va",
-    "B": "ira",
-    "C": "est allée",
-    "D": "allait"
-  },
-  "bonne_reponse": "C",
-  "explication": "L'indicateur 'hier' demande une action terminée au passé.",
-  "rappel_regle": "Le passé composé exprime une action terminée dans le passé.",
-  "astuce_tcf": "Repérez les mots comme hier, la semaine dernière ou ce matin."
-}
+```bash
+AZURE_OPENAI_ENDPOINT=https://...
+AZURE_OPENAI_API_KEY=...
+AZURE_OPENAI_DEPLOYMENT=...
+AZURE_OPENAI_API_VERSION=2024-10-21
 ```
 
-Pour ajouter un futur fichier audio, ajouter par exemple un champ `audio_url` ou `audio_file` aux questions de compréhension orale. L'application affichera déjà les scripts sous la forme "Vous entendez : ...".
+Sans ces variables, la correction écrite IA affiche un état désactivé proprement.
 
-## Partage du lien public
+### Stripe optionnel
 
-Après le déploiement, copier l'URL fournie par Streamlit Cloud et l'envoyer aux candidats. Ils pourront passer le test directement dans leur navigateur.
+```bash
+STRIPE_SECRET_KEY=sk_live_or_test...
+STRIPE_PRICE_ID=price_...
+APP_BASE_URL=http://localhost:8501
+```
+
+Sans Stripe, la page Premium affiche `Paiement bientôt disponible`.
+
+## Structure projet
+
+```text
+app.py
+modules/auth.py
+modules/db.py
+modules/paywall.py
+modules/scoring.py
+modules/questions.py
+modules/ai_tools.py
+modules/ui.py
+modules/exam_engine.py
+data/questions.json
+data/tcf_blueprint.json
+scripts/generate_questions.py
+.env.example
+requirements.txt
+README.md
+```
+
+## Données
+
+`data/questions.json` contient 300 questions originales converties au schéma MVP:
+
+- 100 compréhension orale
+- 100 structure de la langue
+- 100 compréhension écrite
+
+Chaque question contient `id`, `skill`, `level`, `difficulty_score`, `type`, `prompt`, `context`, `choices`, `correct_answer`, `explanation`, `estimated_time_seconds` et `tags`.
+
+`data/tcf_blueprint.json` décrit les compétences, niveaux et types de questions cibles pour guider l'expansion de la banque.
+
+## Génération de questions
+
+Le script `scripts/generate_questions.py` prépare le pipeline IA pour générer de nouvelles questions originales si `OPENAI_API_KEY` est disponible.
+
+```bash
+python scripts/generate_questions.py
+```
+
+Objectif produit: étendre progressivement la banque à 1000 questions, avec une bonne répartition par compétence.
+
+## Roadmap
+
+- Brancher un vrai checkout Stripe et un webhook Premium
+- Ajouter une page administrateur pour gérer les questions
+- Générer au moins 100 questions A2 supplémentaires
+- Ajouter des audios réels pour la compréhension orale
+- Améliorer le modèle de scoring avec pondération par difficulté
+- Export PDF des rapports d'examen
+- Plans de révision personnalisés via IA
+
+## Tests manuels recommandés
+
+- `streamlit run app.py` démarre
+- Inscription et connexion fonctionnent
+- Le dashboard s'affiche après connexion
+- Un utilisateur gratuit est limité par les quotas quotidiens
+- L'entraînement sauvegarde les tentatives
+- L'examen blanc sauvegarde le résultat
+- L'expression écrite reste utilisable sans clé IA
+- La page Premium reste utilisable sans Stripe

@@ -1,0 +1,51 @@
+{
+  "skills": {
+    "comprehension_ecrite": {
+      "description": "Compréhension écrite type TCF",
+      "levels": ["A2", "B1", "B2", "C1"],
+      "question_types": [
+        "annonce courte",
+        "email",
+        "article court",
+        "texte argumentatif",
+        "information implicite",
+        "synonyme en contexte",
+        "intention de l'auteur"
+      ]
+    },
+    "structure_langue": {
+      "description": "Grammaire et lexique type TCF",
+      "levels": ["A2", "B1", "B2", "C1"],
+      "question_types": [
+        "temps verbaux",
+        "connecteurs logiques",
+        "pronoms",
+        "prépositions",
+        "subjonctif",
+        "accords",
+        "lexique en contexte"
+      ]
+    },
+    "comprehension_orale": {
+      "description": "Compréhension orale type TCF",
+      "levels": ["A2", "B1", "B2", "C1"],
+      "question_types": [
+        "dialogue quotidien",
+        "annonce publique",
+        "interview",
+        "chronique radio",
+        "opinion implicite"
+      ]
+    },
+    "expression_ecrite": {
+      "description": "Production écrite type TCF",
+      "levels": ["A2", "B1", "B2", "C1"],
+      "tasks": [
+        "message court",
+        "email formel",
+        "récit d'expérience",
+        "argumentation"
+      ]
+    }
+  }
+}
