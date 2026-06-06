@@ -35,7 +35,7 @@ AI_DEFAULT_MODEL = "gpt-5-mini"
 AI_MAX_CALLS_PER_SESSION = 10
 AI_INPUT_CHAR_LIMIT = 6000
 AI_OUTPUT_TOKEN_LIMIT = 700
-AI_RETEST_TOKEN_LIMIT = 900
+AI_RETEST_TOKEN_LIMIT = 1800
 REQUIRED_AI_QUESTION_FIELDS = {
     "id",
     "section",
@@ -48,6 +48,46 @@ REQUIRED_AI_QUESTION_FIELDS = {
     "explication",
     "rappel_regle",
     "astuce_tcf",
+}
+AI_RETEST_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "properties": {
+        "questions": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 4,
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": {
+                    "id": {"type": "string"},
+                    "section": {"type": "string"},
+                    "theme": {"type": "string"},
+                    "niveau": {"type": "string"},
+                    "consigne": {"type": "string"},
+                    "texte": {"type": "string"},
+                    "choix": {
+                        "type": "object",
+                        "additionalProperties": False,
+                        "properties": {
+                            "A": {"type": "string"},
+                            "B": {"type": "string"},
+                            "C": {"type": "string"},
+                            "D": {"type": "string"},
+                        },
+                        "required": ["A", "B", "C", "D"],
+                    },
+                    "bonne_reponse": {"type": "string", "enum": ["A", "B", "C", "D"]},
+                    "explication": {"type": "string"},
+                    "rappel_regle": {"type": "string"},
+                    "astuce_tcf": {"type": "string"},
+                },
+                "required": sorted(REQUIRED_AI_QUESTION_FIELDS),
+            },
+        }
+    },
+    "required": ["questions"],
 }
 PARASITE_PREFIX_RE = re.compile(
     r"^\s*(?:sujet\s+(?:compréhension|comprehension|expression\s+écrite|expression\s+ecrite)|"
@@ -350,12 +390,13 @@ def truncate_for_ai(text, limit=AI_INPUT_CHAR_LIMIT):
     return text[:limit] + "\n\n[Texte tronqué pour limiter le coût de l'appel IA.]"
 
 
-def ai_cache_key(prompt, max_tokens):
-    raw = f"{ai_model()}::{max_tokens}::{truncate_for_ai(prompt)}"
+def ai_cache_key(prompt, max_tokens, response_schema=None):
+    schema_key = json.dumps(response_schema, sort_keys=True, ensure_ascii=False) if response_schema else "text"
+    raw = f"{ai_model()}::{max_tokens}::{schema_key}::{truncate_for_ai(prompt)}"
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
-def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
+def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT, response_schema=None):
     """Appel IA volontaire, plafonné et caché pour limiter les coûts personnels."""
     # Garde-fou coût : aucun appel API si le Mode IA n'a pas été activé explicitement.
     if not ai_is_enabled():
@@ -365,7 +406,7 @@ def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
     if OpenAI is None:
         return "SDK OpenAI non installé : lancez pip install -r requirements.txt puis redémarrez l'application."
 
-    cache_key = ai_cache_key(prompt, max_tokens)
+    cache_key = ai_cache_key(prompt, max_tokens, response_schema)
     if cache_key in st.session_state.ai_cache:
         return st.session_state.ai_cache[cache_key]
 
@@ -375,16 +416,26 @@ def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
 
     client = OpenAI(api_key=openai_api_key())
     try:
-        response = client.responses.create(
-            model=ai_model(),
-            input=[
+        request = {
+            "model": ai_model(),
+            "input": [
                 {
                     "role": "user",
                     "content": truncate_for_ai(prompt),
                 }
             ],
-            max_output_tokens=max_tokens,
-        )
+            "max_output_tokens": max_tokens,
+        }
+        if response_schema:
+            request["text"] = {
+                "format": {
+                    "type": "json_schema",
+                    "name": "tcf_retest_questions",
+                    "schema": response_schema,
+                    "strict": True,
+                }
+            }
+        response = client.responses.create(**request)
     except Exception as exc:
         if "insufficient_quota" in str(exc):
             return (
@@ -394,7 +445,10 @@ def call_ai(prompt, max_tokens=AI_OUTPUT_TOKEN_LIMIT):
         return f"Erreur OpenAI : {exc}"
 
     st.session_state.ai_call_count += 1
-    output = response.output_text or "Aucune réponse IA reçue."
+    if getattr(response, "status", None) == "incomplete":
+        reason = getattr(getattr(response, "incomplete_details", None), "reason", "sortie incomplète")
+        return f"Réponse IA incomplète ({reason}). Réessayez avec le même bouton."
+    output = response.output_text or "Aucune réponse IA reçue. Vérifiez le modèle configuré ou réessayez."
     st.session_state.ai_cache[cache_key] = output
     return output
 
@@ -433,11 +487,14 @@ def extract_json_array(text):
 
 def validate_ai_questions(raw_text):
     try:
-        questions = json.loads(extract_json_array(raw_text))
+        parsed = json.loads(extract_json_array(raw_text))
     except json.JSONDecodeError as exc:
+        if "Unterminated string" in str(exc):
+            return [], "Réponse IA tronquée : réessayez. L'application demande maintenant un JSON strict plus fiable."
         return [], f"JSON IA invalide : {exc}"
+    questions = parsed.get("questions") if isinstance(parsed, dict) else parsed
     if not isinstance(questions, list):
-        return [], "JSON IA invalide : la réponse doit être une liste."
+        return [], "JSON IA invalide : la réponse doit contenir une liste de questions."
 
     validated = []
     for index, question in enumerate(questions, start=1):
@@ -453,6 +510,21 @@ def validate_ai_questions(raw_text):
             return [], f"Question IA {index} invalide : choix doit contenir A, B, C et D."
         validated.append(question)
     return validated, None
+
+
+def is_ai_error_message(text):
+    return str(text).startswith(
+        (
+            "Mode IA",
+            "IA non configurée",
+            "SDK OpenAI",
+            "Limite atteinte",
+            "Erreur OpenAI",
+            "Quota OpenAI",
+            "Réponse IA incomplète",
+            "Aucune réponse IA",
+        )
+    )
 
 
 def writing_feedback_prompt(task, answer):
@@ -495,27 +567,12 @@ def retest_questions_prompt(item, count=3):
     return f"""
 Génère exactement {count} questions TCF similaires pour retester ce type d'erreur.
 Niveau visé : B2/C1.
+Chaque question doit être courte, claire et entièrement remplie.
 
 Question source :
 {json.dumps(source, ensure_ascii=False)}
 
-Réponds uniquement avec un JSON strict, sans texte avant ni après.
-Format obligatoire :
-[
-  {{
-    "id": "AI_RETEST_001",
-    "section": "{item['section']}",
-    "theme": "{item['theme']}",
-    "niveau": "B2/C1",
-    "consigne": "...",
-    "texte": "...",
-    "choix": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
-    "bonne_reponse": "A",
-    "explication": "...",
-    "rappel_regle": "...",
-    "astuce_tcf": "..."
-  }}
-]
+Respecte le schéma JSON fourni. Garde la même section et le même thème.
 """
 
 
@@ -644,8 +701,12 @@ def render_generated_questions(questions, key_prefix):
 
 
 def generate_retest_for_item(item, output_key, count=3):
-    raw = call_ai(retest_questions_prompt(item, count=count), max_tokens=AI_RETEST_TOKEN_LIMIT)
-    if raw.startswith(("Mode IA", "IA non configurée", "SDK OpenAI", "Limite atteinte", "Erreur OpenAI")):
+    raw = call_ai(
+        retest_questions_prompt(item, count=count),
+        max_tokens=AI_RETEST_TOKEN_LIMIT,
+        response_schema=AI_RETEST_SCHEMA,
+    )
+    if is_ai_error_message(raw):
         st.session_state.ai_outputs[output_key] = raw
         st.session_state.ai_generated_questions.pop(output_key, None)
         return
