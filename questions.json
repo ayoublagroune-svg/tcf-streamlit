@@ -5398,5 +5398,2021 @@
     "explication": "Le message confirme le rendez-vous et demande une pièce d’identité.",
     "rappel_regle": "Confirmer signifie maintenir ce qui était prévu.",
     "astuce_tcf": "Dans un email, cherchez l’action principale puis les conditions."
+  },
+  {
+    "id": "COX_A2_301",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_302",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_303",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_304",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_305",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_306",
+    "section": "comprehension_orale",
+    "theme": "annonce_pratique",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce : Le cours de français de ce soir est déplacé en salle 204, au deuxième étage. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Le cours est annulé.",
+      "B": "Le cours change de salle.",
+      "C": "Le cours commence demain.",
+      "D": "Le cours est en ligne."
+    },
+    "bonne_reponse": "B",
+    "explication": "L'information principale est le changement de salle.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_307",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_308",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_309",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_310",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_311",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_A2_312",
+    "section": "comprehension_orale",
+    "theme": "dialogue_quotidien",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Dialogue : Tu peux acheter du pain en rentrant ? Je prépare le dîner mais je n'ai plus le temps de sortir. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La personne demande un achat.",
+      "B": "La personne refuse de dîner.",
+      "C": "La personne cherche son sac.",
+      "D": "La personne part au travail."
+    },
+    "bonne_reponse": "A",
+    "explication": "Acheter du pain est la demande principale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_313",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_314",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_315",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_316",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_317",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_318",
+    "section": "comprehension_orale",
+    "theme": "message_vocal",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Message vocal : Bonjour, votre dossier est complet. Vous recevrez une réponse par courrier dans un délai de deux semaines. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Le dossier manque de documents.",
+      "B": "La réponse sera donnée immédiatement.",
+      "C": "Le dossier est complet.",
+      "D": "Il faut revenir demain."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le message indique clairement que le dossier est complet.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_319",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_320",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_321",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_322",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_323",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B1_324",
+    "section": "comprehension_orale",
+    "theme": "consigne_transport",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Annonce dans le métro : En raison d'un incident technique, les voyageurs pour Nation sont invités à emprunter la ligne 2. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Il faut changer de ligne.",
+      "B": "La station Nation est fermée définitivement.",
+      "C": "La ligne 2 est annulée.",
+      "D": "Le métro circule normalement."
+    },
+    "bonne_reponse": "A",
+    "explication": "Les voyageurs sont orientés vers une autre ligne.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_325",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_326",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_327",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_328",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_329",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_330",
+    "section": "comprehension_orale",
+    "theme": "opinion_nuancee",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Interview : Le numérique facilite certaines démarches, mais il risque aussi d'exclure les personnes peu à l'aise avec les outils en ligne. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La personne rejette totalement le numérique.",
+      "B": "La personne présente une opinion nuancée.",
+      "C": "La personne parle d'un loisir.",
+      "D": "La personne annonce une panne."
+    },
+    "bonne_reponse": "B",
+    "explication": "Elle donne un avantage puis une limite.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_331",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_332",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_333",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_334",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_335",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_B2_336",
+    "section": "comprehension_orale",
+    "theme": "implicite_oral",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Conversation : J'aurais aimé accepter ce poste, mais déménager si loin avec les enfants, ce n'est pas réaliste pour l'instant. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La personne accepte le poste.",
+      "B": "La personne hésite encore sans raison.",
+      "C": "La personne refuse pour des raisons familiales.",
+      "D": "La personne ne cherche pas de travail."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le refus est implicite et lié à la famille.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_337",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_338",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_339",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_340",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_341",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_342",
+    "section": "comprehension_orale",
+    "theme": "chronique_radio",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Chronique : On présente souvent la ville durable comme une évidence, alors qu'elle suppose des arbitrages coûteux entre mobilité, logement et justice sociale. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Le chroniqueur défend une solution simple.",
+      "B": "Le chroniqueur souligne la complexité du sujet.",
+      "C": "Le chroniqueur parle seulement de transports.",
+      "D": "Le chroniqueur nie l'existence des villes."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le mot arbitrages et l'opposition montrent une analyse complexe.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_343",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_344",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_345",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_346",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_347",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "COX_C1_348",
+    "section": "comprehension_orale",
+    "theme": "intention_locuteur",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Débat : Dire que la réforme est imparfaite ne signifie pas qu'il faille l'abandonner ; cela oblige surtout à en corriger les effets les plus injustes. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La personne veut supprimer la réforme.",
+      "B": "La personne demande une amélioration ciblée.",
+      "C": "La personne refuse toute critique.",
+      "D": "La personne change de sujet."
+    },
+    "bonne_reponse": "B",
+    "explication": "La critique sert à proposer une correction, pas un abandon.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_A2_501",
+    "section": "structures_langue",
+    "theme": "prepositions",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Je vais ___ médecin demain matin.",
+    "choix": {
+      "A": "chez le",
+      "B": "à la",
+      "C": "dans le",
+      "D": "sur le"
+    },
+    "bonne_reponse": "A",
+    "explication": "On dit aller chez le médecin.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_A2_502",
+    "section": "structures_langue",
+    "theme": "temps_present",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Tous les lundis, elle ___ au marché.",
+    "choix": {
+      "A": "va",
+      "B": "ira",
+      "C": "allait",
+      "D": "est allée"
+    },
+    "bonne_reponse": "A",
+    "explication": "Une habitude au présent demande va.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_A2_503",
+    "section": "structures_langue",
+    "theme": "articles",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Il cherche ___ appartement près de la gare.",
+    "choix": {
+      "A": "un",
+      "B": "une",
+      "C": "des",
+      "D": "du"
+    },
+    "bonne_reponse": "A",
+    "explication": "Appartement est masculin singulier.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_A2_504",
+    "section": "structures_langue",
+    "theme": "negation",
+    "niveau": "A2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Je ___ connais pas cette adresse.",
+    "choix": {
+      "A": "ne",
+      "B": "n'",
+      "C": "pas",
+      "D": "plus"
+    },
+    "bonne_reponse": "A",
+    "explication": "Avec connaître, on écrit je ne connais pas.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B1_505",
+    "section": "structures_langue",
+    "theme": "passe_compose_imparfait",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Il ___ quand son téléphone a sonné.",
+    "choix": {
+      "A": "lisait",
+      "B": "lira",
+      "C": "lit",
+      "D": "a lu"
+    },
+    "bonne_reponse": "A",
+    "explication": "L'imparfait décrit l'action en cours interrompue.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B1_506",
+    "section": "structures_langue",
+    "theme": "pronoms",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Ce livre, je ___ ai parlé à mon professeur.",
+    "choix": {
+      "A": "lui",
+      "B": "en",
+      "C": "y",
+      "D": "le"
+    },
+    "bonne_reponse": "B",
+    "explication": "Parler de quelque chose devient en parler.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B1_507",
+    "section": "structures_langue",
+    "theme": "discours_indirect",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Elle dit qu'elle ___ demain.",
+    "choix": {
+      "A": "viendra",
+      "B": "vient",
+      "C": "venait",
+      "D": "est venue"
+    },
+    "bonne_reponse": "A",
+    "explication": "Demain renvoie au futur dans le discours indirect au présent.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B1_508",
+    "section": "structures_langue",
+    "theme": "condition",
+    "niveau": "B1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "S'il pleut, nous ___ la visite.",
+    "choix": {
+      "A": "reporterons",
+      "B": "reportions",
+      "C": "aurions reporté",
+      "D": "reporter"
+    },
+    "bonne_reponse": "A",
+    "explication": "Si + présent appelle souvent le futur simple.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B2_509",
+    "section": "structures_langue",
+    "theme": "connecteurs",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Le projet est intéressant ; ___, son coût reste difficile à justifier.",
+    "choix": {
+      "A": "cependant",
+      "B": "donc",
+      "C": "parce que",
+      "D": "ainsi"
+    },
+    "bonne_reponse": "A",
+    "explication": "Cependant marque une opposition.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B2_510",
+    "section": "structures_langue",
+    "theme": "subjonctif",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Il faut que chaque candidat ___ une pièce d'identité.",
+    "choix": {
+      "A": "présente",
+      "B": "présentera",
+      "C": "présentait",
+      "D": "a présenté"
+    },
+    "bonne_reponse": "A",
+    "explication": "Il faut que est suivi du subjonctif.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B2_511",
+    "section": "structures_langue",
+    "theme": "hypothese",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Si nous avions reçu le dossier plus tôt, nous l'___ déjà traité.",
+    "choix": {
+      "A": "aurions",
+      "B": "avons",
+      "C": "allons",
+      "D": "étions"
+    },
+    "bonne_reponse": "A",
+    "explication": "L'hypothèse irréelle du passé appelle le conditionnel passé.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_B2_512",
+    "section": "structures_langue",
+    "theme": "relatifs",
+    "niveau": "B2",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Le rapport ___ je fais référence a été publié hier.",
+    "choix": {
+      "A": "auquel",
+      "B": "lequel",
+      "C": "duquel",
+      "D": "qui"
+    },
+    "bonne_reponse": "A",
+    "explication": "Faire référence à demande auquel.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_C1_513",
+    "section": "structures_langue",
+    "theme": "nuance_lexicale",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "La mesure a été accueillie avec ___ par les associations, qui attendent des garanties concrètes.",
+    "choix": {
+      "A": "circonspection",
+      "B": "euphorie",
+      "C": "indifférence",
+      "D": "désinvolture"
+    },
+    "bonne_reponse": "A",
+    "explication": "Circonspection signifie prudence et réserve.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_C1_514",
+    "section": "structures_langue",
+    "theme": "concession",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "___ les critiques, le dispositif sera maintenu pendant une année supplémentaire.",
+    "choix": {
+      "A": "En dépit de",
+      "B": "Afin de",
+      "C": "Grâce à",
+      "D": "Faute de"
+    },
+    "bonne_reponse": "A",
+    "explication": "En dépit de introduit une concession.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_C1_515",
+    "section": "structures_langue",
+    "theme": "registre",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "Le directeur a reconnu que les résultats étaient ___, sans toutefois parler d'échec.",
+    "choix": {
+      "A": "en demi-teinte",
+      "B": "fulgurants",
+      "C": "inexistants",
+      "D": "triomphants"
+    },
+    "bonne_reponse": "A",
+    "explication": "En demi-teinte exprime un bilan mitigé.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "SLX_C1_516",
+    "section": "structures_langue",
+    "theme": "cause_consequence",
+    "niveau": "C1",
+    "consigne": "Choisissez la bonne réponse.",
+    "texte": "La concertation a été insuffisante, ___ la méfiance persistante des habitants.",
+    "choix": {
+      "A": "d'où",
+      "B": "quoique",
+      "C": "à moins que",
+      "D": "de peur que"
+    },
+    "bonne_reponse": "A",
+    "explication": "D'où introduit une conséquence.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_701",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_702",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_703",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_704",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_705",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_706",
+    "section": "comprehension_ecrite",
+    "theme": "message_court",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Bonjour, la réunion de jeudi commencera à 10 h au lieu de 9 h. Merci de prévenir les personnes concernées. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La réunion est avancée.",
+      "B": "La réunion commence plus tard.",
+      "C": "La réunion est annulée.",
+      "D": "La réunion a lieu vendredi."
+    },
+    "bonne_reponse": "B",
+    "explication": "10 h est plus tard que 9 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_707",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_708",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_709",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_710",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_711",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_A2_712",
+    "section": "comprehension_ecrite",
+    "theme": "annonce_service",
+    "niveau": "A2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La piscine municipale sera fermée dimanche matin pour entretien. Elle rouvrira à 14 h. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La piscine ouvre à 14 h.",
+      "B": "La piscine ferme toute la semaine.",
+      "C": "La piscine change d'adresse.",
+      "D": "L'entretien est annulé."
+    },
+    "bonne_reponse": "A",
+    "explication": "La réouverture est annoncée à 14 h.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_713",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_714",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_715",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_716",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_717",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_718",
+    "section": "comprehension_ecrite",
+    "theme": "email_administratif",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Madame, votre demande a bien été enregistrée. Si aucun document complémentaire n'est nécessaire, vous recevrez une confirmation sous dix jours. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "La demande est refusée.",
+      "B": "La demande est enregistrée.",
+      "C": "La réponse est immédiate.",
+      "D": "Tous les documents manquent."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le message confirme l'enregistrement.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_719",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_720",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_721",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_722",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_723",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B1_724",
+    "section": "comprehension_ecrite",
+    "theme": "information_pratique",
+    "niveau": "B1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Pour limiter l'attente, la mairie reçoit désormais les usagers uniquement sur rendez-vous, sauf pour les urgences sociales. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Tout le monde peut venir sans rendez-vous.",
+      "B": "Le rendez-vous devient la règle générale.",
+      "C": "La mairie ferme définitivement.",
+      "D": "Les urgences sont interdites."
+    },
+    "bonne_reponse": "B",
+    "explication": "Uniquement sur rendez-vous indique la règle générale.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_725",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_726",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_727",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_728",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_729",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_730",
+    "section": "comprehension_ecrite",
+    "theme": "article_court",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "De plus en plus d'entreprises réduisent les réunions. Elles constatent que les échanges courts et préparés améliorent la concentration, même si certaines décisions complexes exigent encore une discussion approfondie. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "L'article condamne toute réunion.",
+      "B": "L'article présente une évolution avec une limite.",
+      "C": "L'article parle de vacances.",
+      "D": "L'article affirme que les décisions simples sont impossibles."
+    },
+    "bonne_reponse": "B",
+    "explication": "Le texte valorise les réunions courtes mais garde une exception.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_731",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_732",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_733",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_734",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_735",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_B2_736",
+    "section": "comprehension_ecrite",
+    "theme": "implicite_ecrit",
+    "niveau": "B2",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "Le restaurant annonce une carte plus courte. Selon le chef, il ne s'agit pas d'une économie, mais d'une manière de mieux maîtriser la qualité des produits. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Le chef veut justifier un choix stratégique.",
+      "B": "Le chef annonce une fermeture.",
+      "C": "Le chef critique les clients.",
+      "D": "Le chef refuse les produits frais."
+    },
+    "bonne_reponse": "A",
+    "explication": "Il explique l'intention derrière la carte plus courte.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_737",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_738",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_739",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_740",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_741",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_742",
+    "section": "comprehension_ecrite",
+    "theme": "texte_argumentatif",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "La gratuité des transports est souvent présentée comme une réponse évidente à la pollution urbaine. Pourtant, sans investissement massif dans la fréquence et la fiabilité du réseau, elle risque surtout de déplacer le problème sans modifier durablement les habitudes. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "Le texte soutient une mesure sans réserve.",
+      "B": "Le texte critique la pollution sans proposer d'analyse.",
+      "C": "Le texte nuance l'efficacité d'une mesure populaire.",
+      "D": "Le texte affirme que les transports sont inutiles."
+    },
+    "bonne_reponse": "C",
+    "explication": "Le texte montre qu'une mesure séduisante peut être insuffisante.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_743",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_744",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer. Le message insiste sur une contrainte pratique.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_745",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer. La précision finale limite l'interprétation possible.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_746",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer. Le document ajoute une nuance qui élimine une réponse trop générale.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_747",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer. L'information essentielle est donnée après une justification.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
+  },
+  {
+    "id": "CEX_C1_748",
+    "section": "comprehension_ecrite",
+    "theme": "intention_auteur",
+    "niveau": "C1",
+    "consigne": "Lisez le texte et choisissez la bonne réponse.",
+    "texte": "En multipliant les indicateurs de performance, certaines institutions prétendent gagner en transparence. Mais lorsque ces chiffres deviennent l'objectif lui-même, ils peuvent appauvrir la décision au lieu de l'éclairer. La situation oppose une intention et une contrainte.",
+    "choix": {
+      "A": "L'auteur alerte sur un effet pervers des indicateurs.",
+      "B": "L'auteur demande plus de chiffres partout.",
+      "C": "L'auteur refuse toute transparence.",
+      "D": "L'auteur décrit une procédure technique neutre."
+    },
+    "bonne_reponse": "A",
+    "explication": "L'auteur signale que l'outil peut produire l'effet inverse de celui attendu.",
+    "rappel_regle": "Repérez l'indice linguistique ou l'information exacte avant de choisir.",
+    "astuce_tcf": "Au TCF, éliminez les réponses trop absolues ou qui déforment la nuance du document."
   }
 ]

@@ -219,7 +219,16 @@ def set_page(page):
 
 
 def root_question_id(question_id):
+    generated_match = re.match(r"^(COX|SLX|CEX)_([A-Z0-9]+)_(\d+)$", question_id)
+    if generated_match:
+        prefix, level, number = generated_match.groups()
+        family = (int(number) - 1) // 6
+        return f"{prefix}_{level}_F{family}"
     return question_id.split("_V", 1)[0]
+
+
+def level_rank(question):
+    return {"A1": 0, "A2": 1, "B1": 2, "B2": 3, "C1": 4, "C2": 5}.get(question.get("niveau"), 2)
 
 
 def interleave_questions_by_theme(questions):
@@ -243,6 +252,16 @@ def interleave_questions_by_theme(questions):
     return ordered
 
 
+def order_questions_progressively(questions):
+    by_level = defaultdict(list)
+    for question in questions:
+        by_level[level_rank(question)].append(question)
+    ordered = []
+    for rank in sorted(by_level):
+        ordered.extend(interleave_questions_by_theme(by_level[rank]))
+    return ordered
+
+
 def select_attempt_question_ids(all_questions, sections):
     selected = []
     for section in sections:
@@ -258,7 +277,7 @@ def select_attempt_question_ids(all_questions, sections):
         section_selected = []
         for root in random.sample(roots, target):
             section_selected.append(random.choice(grouped[root]))
-        selected.extend(question["id"] for question in interleave_questions_by_theme(section_selected))
+        selected.extend(question["id"] for question in order_questions_progressively(section_selected))
     return selected
 
 
@@ -289,20 +308,47 @@ def questions_by_section(questions, section):
     return [q for q in questions if q["section"] == section]
 
 
-def estimate_level(percent):
-    if percent <= 20:
-        return "inférieur A1"
-    if percent <= 35:
+LEVEL_WEIGHTS = {
+    "A1": 1.0,
+    "A2": 1.25,
+    "B1": 1.65,
+    "B2": 2.15,
+    "C1": 2.8,
+    "C2": 3.2,
+}
+
+
+def estimate_level_from_tcf_score(score):
+    if score < 100:
+        return "A1 non atteint"
+    if score <= 199:
         return "A1"
-    if percent <= 50:
+    if score <= 299:
         return "A2"
-    if percent <= 65:
+    if score <= 399:
         return "B1"
-    if percent <= 80:
+    if score <= 499:
         return "B2"
-    if percent <= 92:
+    if score <= 599:
         return "C1"
     return "C2"
+
+
+def estimate_level(percent):
+    return estimate_level_from_tcf_score(estimated_tcf_score_from_percent(percent))
+
+
+def question_weight(question):
+    return LEVEL_WEIGHTS.get(question.get("niveau"), 1.6)
+
+
+def estimated_tcf_score(weighted_ratio):
+    ratio = max(0.0, min(1.0, weighted_ratio))
+    return int(round(100 + ratio * 599))
+
+
+def estimated_tcf_score_from_percent(percent):
+    return estimated_tcf_score((percent or 0) / 100)
 
 
 def format_seconds(seconds):
@@ -638,6 +684,10 @@ def score_attempt(questions):
     total = len(scored)
     correct_count = sum(item["correct"] for item in scored)
     percent = round(correct_count / total * 100, 1) if total else 0
+    total_weight = sum(question_weight(item) for item in scored)
+    correct_weight = sum(question_weight(item) for item in scored if item["correct"])
+    weighted_ratio = correct_weight / total_weight if total_weight else 0
+    tcf_score = estimated_tcf_score(weighted_ratio)
 
     by_section = []
     for section, meta in SECTION_META.items():
@@ -646,6 +696,9 @@ def score_attempt(questions):
             continue
         ok = sum(item["correct"] for item in section_items)
         pct = round(ok / len(section_items) * 100, 1)
+        section_weight = sum(question_weight(item) for item in section_items)
+        section_ok_weight = sum(question_weight(item) for item in section_items if item["correct"])
+        section_tcf_score = estimated_tcf_score(section_ok_weight / section_weight if section_weight else 0)
         by_section.append(
             {
                 "section": section,
@@ -653,7 +706,8 @@ def score_attempt(questions):
                 "bonnes réponses": ok,
                 "questions": len(section_items),
                 "score": pct,
-                "niveau estimé": estimate_level(pct),
+                "score TCF estimé": section_tcf_score,
+                "niveau estimé": estimate_level_from_tcf_score(section_tcf_score),
             }
         )
 
@@ -664,7 +718,8 @@ def score_attempt(questions):
         "correct": correct_count,
         "incorrect": total - correct_count,
         "percent": percent,
-        "level": estimate_level(percent),
+        "tcf_score": tcf_score,
+        "level": estimate_level_from_tcf_score(tcf_score),
         "by_section": by_section,
         "weak_themes": weak_themes,
     }
@@ -675,6 +730,7 @@ def build_report_payload(questions):
     return {
         "date": datetime.now().isoformat(timespec="seconds"),
         "score": score["percent"],
+        "score_tcf_estime": score["tcf_score"],
         "niveau_estime": score["level"],
         "bonnes_reponses": score["correct"],
         "mauvaises_reponses": score["incorrect"],
@@ -806,13 +862,19 @@ def pdf_bytes(payload):
     story = [
         Paragraph(APP_TITLE, styles["Title"]),
         Paragraph(f"Date : {payload['date']}", styles["Normal"]),
-        Paragraph(f"Score : {payload['score']} % - Niveau estimé : {payload['niveau_estime']}", styles["Heading2"]),
-        Paragraph("Ce score est une estimation d'entraînement. Le TCF officiel utilise un barème différent.", styles["Italic"]),
+        Paragraph(
+            f"Score estimé : {payload['score_tcf_estime']} / 699 - Niveau estimé : {payload['niveau_estime']}",
+            styles["Heading2"],
+        ),
+        Paragraph("Score non officiel : estimation d'entraînement pondérée par difficulté.", styles["Italic"]),
         Spacer(1, 12),
         Paragraph("Compétences", styles["Heading2"]),
     ]
     table_rows = [["Compétence", "Score", "Niveau"]]
-    table_rows += [[row["compétence"], f"{row['score']} %", row["niveau estimé"]] for row in payload["details_competences"]]
+    table_rows += [
+        [row["compétence"], f"{row.get('score TCF estimé', '')} / 699", row["niveau estimé"]]
+        for row in payload["details_competences"]
+    ]
     table = Table(table_rows, hAlign="LEFT")
     table.setStyle(
         TableStyle(
@@ -874,7 +936,7 @@ def render_home(questions):
 
     cols = st.columns(3)
     with cols[0]:
-        metric_card("Banque QCM", len(questions), "L'examen tire 76 questions au hasard dans cette banque.")
+        metric_card("Banque QCM", len(questions), "L'examen tire 76 questions progressives dans cette banque.")
     with cols[1]:
         metric_card("Durée estimée", "2 h 37")
     with cols[2]:
@@ -1070,7 +1132,7 @@ def render_test(questions):
 def render_dashboard(score):
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        st.metric("Score global", f"{score['percent']} %")
+        st.metric("Score TCF estimé", f"{score['tcf_score']} / 699")
     with c2:
         st.metric("Niveau estimé", score["level"])
     with c3:
@@ -1078,7 +1140,7 @@ def render_dashboard(score):
     with c4:
         st.metric("Mauvaises réponses", score["incorrect"])
 
-    st.caption("Ce score est une estimation d'entraînement. Le TCF officiel utilise un barème différent.")
+    st.caption("Estimation non officielle : le vrai TCF utilise un barème psychométrique centralisé par France Éducation international.")
     section_df = pd.DataFrame(score["by_section"])
     if not section_df.empty:
         col1, col2 = st.columns(2)
@@ -1094,7 +1156,8 @@ def render_dashboard(score):
             radar.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 100])), showlegend=False)
             st.plotly_chart(radar, use_container_width=True)
         with col2:
-            st.plotly_chart(px.bar(section_df, x="compétence", y="score", color="niveau estimé", range_y=[0, 100]), use_container_width=True)
+            y_col = "score TCF estimé" if "score TCF estimé" in section_df.columns else "score"
+            st.plotly_chart(px.bar(section_df, x="compétence", y=y_col, color="niveau estimé", range_y=[0, 699]), use_container_width=True)
 
     if score["weak_themes"]:
         theme_df = pd.DataFrame(score["weak_themes"].most_common(), columns=["thème", "erreurs"])
