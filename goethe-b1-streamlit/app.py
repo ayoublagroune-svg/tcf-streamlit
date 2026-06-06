@@ -28,7 +28,7 @@ except ImportError:
 
 
 APP_TITLE = "Goethe-Zertifikat B1 Trainer"
-QUESTIONS_PATH = Path("questions.json")
+QUESTIONS_PATH = Path(__file__).with_name("questions.json")
 AI_ENABLED = False
 AI_DEFAULT_MODEL = "gpt-4.1-mini"
 AI_MAX_CALLS_PER_SESSION = 10
