@@ -1,7 +1,9 @@
 import csv
+import html
 import hashlib
 import io
 import json
+import random
 import time
 from collections import Counter, defaultdict
 from datetime import datetime
@@ -11,6 +13,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+import streamlit.components.v1 as components
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -20,6 +23,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 
 APP_TITLE = "TCF Tout Public - Examen Blanc"
 QUESTIONS_PATH = Path("questions.json")
+QUESTION_VARIANTS_PER_ITEM = 2
 
 
 def _md5_compat(*args, **kwargs):
@@ -111,7 +115,35 @@ SPEAKING_TASKS = [
 
 def load_questions():
     with QUESTIONS_PATH.open(encoding="utf-8") as handle:
-        return json.load(handle)
+        questions = json.load(handle)
+    return questions + build_generated_variants(questions)
+
+
+def build_generated_variants(questions):
+    variants = []
+    prefixes = {
+        "comprehension_orale": [
+            "Nouvelle situation audio : ",
+            "Document sonore d'entraînement : ",
+        ],
+        "comprehension_ecrite": [
+            "Nouveau document : ",
+            "Document d'entraînement : ",
+        ],
+        "structures_langue": [
+            "Item grammatical d'entraînement. ",
+            "Nouvelle question de grammaire. ",
+        ],
+    }
+    for question in questions:
+        for variant_index in range(QUESTION_VARIANTS_PER_ITEM):
+            variant = dict(question)
+            variant["choix"] = dict(question["choix"])
+            variant["id"] = f"{question['id']}_V{variant_index + 1}"
+            variant["texte"] = prefixes[question["section"]][variant_index] + question["texte"]
+            variant["explication"] = question["explication"] + " Cette variante évalue le même savoir-faire avec un contexte légèrement différent."
+            variants.append(variant)
+    return variants
 
 
 def init_state():
@@ -124,6 +156,7 @@ def init_state():
         "section_index": 0,
         "section_started_at": None,
         "attempt_started_at": None,
+        "attempt_question_ids": [],
         "history": [],
         "result_saved": False,
     }
@@ -135,11 +168,42 @@ def set_page(page):
     st.session_state.page = page
 
 
-def reset_attempt(sections):
+def root_question_id(question_id):
+    return question_id.split("_V", 1)[0]
+
+
+def select_attempt_question_ids(all_questions, sections):
+    selected = []
+    for section in sections:
+        meta = SECTION_META[section]
+        if meta["kind"] != "mcq":
+            continue
+        pool = questions_by_section(all_questions, section)
+        grouped = defaultdict(list)
+        for question in pool:
+            grouped[root_question_id(question["id"])].append(question)
+        roots = list(grouped)
+        target = min(meta["expected"], len(roots))
+        for root in random.sample(roots, target):
+            selected.append(random.choice(grouped[root])["id"])
+    return selected
+
+
+def current_attempt_questions(all_questions):
+    ids = st.session_state.get("attempt_question_ids", [])
+    if not ids:
+        ids = select_attempt_question_ids(all_questions, st.session_state.active_sections)
+        st.session_state.attempt_question_ids = ids
+    by_id = {question["id"]: question for question in all_questions}
+    return [by_id[question_id] for question_id in ids if question_id in by_id]
+
+
+def reset_attempt(sections, all_questions):
     st.session_state.answers = {}
     st.session_state.writing_answers = {}
     st.session_state.speaking_notes = {}
     st.session_state.active_sections = sections
+    st.session_state.attempt_question_ids = select_attempt_question_ids(all_questions, sections)
     st.session_state.section_index = 0
     st.session_state.section_started_at = time.time()
     st.session_state.attempt_started_at = datetime.now().isoformat(timespec="seconds")
@@ -229,6 +293,8 @@ def build_report_payload(questions):
                 "id": item["id"],
                 "section": item["section"],
                 "theme": item["theme"],
+                "consigne": item["consigne"],
+                "question": item["texte"],
                 "reponse_utilisateur": item["user_answer"],
                 "bonne_reponse": item["bonne_reponse"],
                 "correct": item["correct"],
@@ -251,6 +317,8 @@ def csv_bytes(payload):
             "id",
             "section",
             "theme",
+            "consigne",
+            "question",
             "reponse_utilisateur",
             "bonne_reponse",
             "correct",
@@ -292,6 +360,7 @@ def pdf_bytes(payload):
     for item in payload["reponses"]:
         result = "Correct" if item["correct"] else "Incorrect"
         story.append(Paragraph(f"{item['id']} - {item['section']} - {result}", styles["Heading3"]))
+        story.append(Paragraph(f"Question : {item.get('question', '')}", styles["Normal"]))
         story.append(Paragraph(f"Votre réponse : {item['reponse_utilisateur'] or 'Aucune'} | Bonne réponse : {item['bonne_reponse']}", styles["Normal"]))
         story.append(Paragraph(f"Explication : {item['explication']}", styles["Normal"]))
         story.append(Paragraph(f"Rappel : {item['rappel_regle']}", styles["Normal"]))
@@ -338,7 +407,7 @@ def render_home(questions):
 
     cols = st.columns(3)
     with cols[0]:
-        metric_card("Questions QCM", len(questions))
+        metric_card("Banque QCM", len(questions), "L'examen tire 76 questions au hasard dans cette banque.")
     with cols[1]:
         metric_card("Durée estimée", "2 h 37")
     with cols[2]:
@@ -348,7 +417,7 @@ def render_home(questions):
     c1, c2 = st.columns(2)
     with c1:
         if st.button("Passer un examen complet", use_container_width=True, type="primary"):
-            reset_attempt(EXAM_ORDER.copy())
+            reset_attempt(EXAM_ORDER.copy(), questions)
             st.rerun()
         if st.button("Consulter mes résultats", use_container_width=True):
             set_page("results")
@@ -362,12 +431,12 @@ def render_home(questions):
             st.rerun()
 
 
-def render_training():
+def render_training(questions):
     st.title("S'entraîner par compétence")
     labels = {meta["label"]: key for key, meta in SECTION_META.items()}
     choice = st.selectbox("Compétence", list(labels))
     if st.button("Commencer l'entraînement", type="primary"):
-        reset_attempt([labels[choice]])
+        reset_attempt([labels[choice]], questions)
         st.rerun()
     if st.button("Retour à l'accueil"):
         set_page("home")
@@ -397,6 +466,35 @@ def advance_section():
     st.session_state.section_started_at = time.time()
 
 
+def render_oral_audio(question):
+    audio_text = html.escape(json.dumps(question["texte"], ensure_ascii=False), quote=True)
+    element_id = f"audio_{question['id']}"
+    components.html(
+        f"""
+        <div id="{element_id}" style="display:flex;gap:10px;align-items:center;margin:8px 0 14px 0;">
+          <button
+            type="button"
+            style="background:#2563eb;color:white;border:0;border-radius:6px;padding:10px 14px;font-weight:700;cursor:pointer;"
+            onclick="
+              window.speechSynthesis.cancel();
+              const utterance = new SpeechSynthesisUtterance({audio_text});
+              utterance.lang = 'fr-FR';
+              utterance.rate = 0.92;
+              window.speechSynthesis.speak(utterance);
+            "
+          >Écouter l'audio</button>
+          <button
+            type="button"
+            style="background:#e2e8f0;color:#0f172a;border:0;border-radius:6px;padding:10px 14px;font-weight:700;cursor:pointer;"
+            onclick="window.speechSynthesis.cancel();"
+          >Stop</button>
+          <span style="color:#475569;font-size:14px;">Lecture audio générée par le navigateur.</span>
+        </div>
+        """,
+        height=62,
+    )
+
+
 def render_mcq_section(section_key, questions, expired):
     disabled = expired
     for index, q in enumerate(questions_by_section(questions, section_key), start=1):
@@ -405,9 +503,11 @@ def render_mcq_section(section_key, questions, expired):
             st.caption(f"Thème : {q['theme'].replace('_', ' ')} | Niveau : {q['niveau']}")
             st.write(q["consigne"])
             if section_key == "comprehension_orale":
-                st.info(f"Vous entendez : {q['texte']}")
                 if q.get("audio_file"):
                     st.audio(q["audio_file"])
+                else:
+                    render_oral_audio(q)
+                st.caption("La transcription sera affichée dans la correction.")
             else:
                 st.write(q["texte"])
             options = [f"{key}. {value}" for key, value in q["choix"].items()]
@@ -557,6 +657,12 @@ def render_correction(questions):
     for idx, item in enumerate(score["items"], start=1):
         status = "✓ Correct" if item["correct"] else "✗ Incorrect"
         with st.expander(f"Question {idx} - {status} - {item['theme'].replace('_', ' ')}", expanded=not item["correct"]):
+            st.write(f"**Consigne :** {item['consigne']}")
+            label = "Transcription audio" if item["section"] == "comprehension_orale" else "Question"
+            st.write(f"**{label} :** {item['texte']}")
+            st.write("**Choix proposés :**")
+            for choice_key, choice_text in item["choix"].items():
+                st.write(f"{choice_key}. {choice_text}")
             st.write(f"**Votre réponse :** {item['user_answer'] or 'Aucune réponse'}")
             st.write(f"**Bonne réponse :** {item['bonne_reponse']} - {item['choix'][item['bonne_reponse']]}")
             st.write(f"**Explication :** {item['explication']}")
@@ -627,11 +733,11 @@ def main():
     if page == "home":
         render_home(questions)
     elif page == "training":
-        render_training()
+        render_training(questions)
     elif page == "test":
-        render_test(questions)
+        render_test(current_attempt_questions(questions))
     elif page == "correction":
-        render_correction(questions)
+        render_correction(current_attempt_questions(questions))
     elif page == "results":
         render_results()
     elif page == "about":
