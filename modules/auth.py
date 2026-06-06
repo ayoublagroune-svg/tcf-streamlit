@@ -12,19 +12,17 @@ except ImportError:
     CryptContext = None
 
 
-PWD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto") if CryptContext else None
-MAX_PASSWORD_BYTES = 72
+LEGACY_BCRYPT_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto") if CryptContext else None
+MAX_PASSWORD_BYTES = 512
 
 
 def validate_password(password):
     if len(password.encode("utf-8")) > MAX_PASSWORD_BYTES:
-        raise ValueError("Le mot de passe ne doit pas dépasser 72 octets. Choisis plutôt 8 à 64 caractères.")
+        raise ValueError("Le mot de passe est trop long. Choisis plutôt 8 à 64 caractères.")
 
 
 def hash_password(password, salt=None):
     validate_password(password)
-    if PWD_CONTEXT:
-        return PWD_CONTEXT.hash(password)
     salt = salt or os.urandom(16).hex()
     digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), 120000)
     return f"pbkdf2_sha256${salt}${digest.hex()}"
@@ -35,8 +33,11 @@ def verify_password(password, stored_hash):
         validate_password(password)
     except ValueError:
         return False
-    if PWD_CONTEXT and not stored_hash.startswith("pbkdf2_sha256$"):
-        return PWD_CONTEXT.verify(password, stored_hash)
+    if LEGACY_BCRYPT_CONTEXT and not stored_hash.startswith("pbkdf2_sha256$"):
+        try:
+            return LEGACY_BCRYPT_CONTEXT.verify(password, stored_hash)
+        except ValueError:
+            return False
     try:
         algo, salt, expected = stored_hash.split("$", 2)
     except ValueError:
